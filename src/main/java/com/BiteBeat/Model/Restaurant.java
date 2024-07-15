@@ -19,12 +19,13 @@ public class Restaurant {
     private Long id;
     @OneToOne
     private User owner;
+    private String name;
     private String description;
     private String cuisineType;
     @OneToOne
     private Address address;
     @Embedded
-    private ContantInformation contantInformation;
+    private ContactInformation contantInformation;
     private String openingHours;
     @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();

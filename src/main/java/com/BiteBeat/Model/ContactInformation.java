@@ -3,7 +3,7 @@ package com.BiteBeat.Model;
 import lombok.Data;
 
 @Data
-public class ContantInformation {
+public class ContactInformation {
     private String email;
     private String mobile;
     private String twitter;

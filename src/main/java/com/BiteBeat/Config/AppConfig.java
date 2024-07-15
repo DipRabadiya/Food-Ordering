@@ -19,6 +19,7 @@ import java.util.Collections;
 @Configuration
 @EnableWebSecurity
 public class AppConfig {
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.sessionManagement(managment -> managment.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -29,7 +30,7 @@ public class AppConfig {
                 ).addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf->csrf.disable())
                 .cors(cors->cors.configurationSource(corsConfigrationSource()));
-        return null;
+        return http.build();
     }
 
     private CorsConfigurationSource corsConfigrationSource() {
@@ -39,8 +40,8 @@ public class AppConfig {
                  CorsConfiguration cfg = new CorsConfiguration();
 
                  cfg.setAllowedOrigins(Arrays.asList(
-                         "https://zosh-food.vercel.app",
-                         "http://localhost:3000"
+//                         "https://zosh-food.vercel.app",
+//                         "http://localhost:3000"
                  ));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
@@ -51,6 +52,7 @@ public class AppConfig {
             }
         };
     }
+
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
